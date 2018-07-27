@@ -90,7 +90,7 @@
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                    <!--  <useConfigFile>true</useConfigFile> -->
-                    <registryUrl>${env.docker_registry_host}</registryUrl>
+                
                     <!-- <dockerHost>https://${docker.registry.host}</dockerHost> -->
                     <resources>
                         <resource>
