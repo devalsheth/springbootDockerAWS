@@ -12,9 +12,10 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn clean install
+      - docker build -t springio .
       - docker images
       - echo Building the Docker image..
-      - docker tag demo/samplerepo:latest 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest 
+      - docker tag springio:latest 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest 
         
   post_build:
     commands:
