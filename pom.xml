@@ -103,6 +103,17 @@
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
+                    <executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+								<configuration>
+									<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+								</configuration>
+							</execution>
+						</executions>
                 </configuration>
             </plugin>
         </plugins>

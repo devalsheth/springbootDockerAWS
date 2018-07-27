@@ -11,7 +11,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn package docker:build
+      - mvn clean install
       - echo Building the Docker image..
       - docker tag demo/samplerepo:latest 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest 
         
