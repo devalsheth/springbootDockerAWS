@@ -13,14 +13,11 @@ phases:
       - echo Build started on `date`
       - mvn clean install
       - docker images
-      - echo Building the Docker image..
-      - docker tag springio:latest 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest 
-        
+      - echo Building the Docker image..        
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest
 artifacts:
   files:
     - target/springDockerTest.jar 
