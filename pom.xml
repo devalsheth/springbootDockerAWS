@@ -6,6 +6,7 @@
     <groupId>org.springframework.samples</groupId>
     <artifactId>springdockertest</artifactId>
     <version>1.0</version>
+    <name>springDockerTest</name>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -38,7 +39,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>AWS-Docker-POC</finalName>
+		<finalName>springDockerTest</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
