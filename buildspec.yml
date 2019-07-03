@@ -8,16 +8,24 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region us-east-2)
+      - REPOSITORY_URI=454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
       - echo Build started on `date`
       - mvn clean install
       - docker images
-      - echo Building the Docker image..        
+      - echo tagging the Docker image..
+      - docker tag springio/springdockertest:latest 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
+      - docker push 454143665149.dkr.ecr.us-east-2.amazonaws.com/demo/samplerepo:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"newSpringDockerContainer","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
-    - target/springDockerTest.jar 
+    - imagedefinitions.json
